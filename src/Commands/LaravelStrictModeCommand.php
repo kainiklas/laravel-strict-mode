@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Kainiklas\LaravelStrictMode\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelStrictModeCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-strict-mode';
 
     public $description = 'My command';
 

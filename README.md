@@ -7,11 +7,9 @@
 
 Enables the following safety mechanisms in your Laravel project:
 
-- Prevent Lazy Loading (N+1 prevention)
-- Partially hydrated model protection
-- Attribute typos and renamed columns
-- Mass assignment protection
-- Model strictness
+- Prevent Lazy Loading (N+1)
+- Prevent defaulting to NULL when using a model's attribute that hasn't been fetched from the DB or doesn't exist on the model
+- Prevent loosing attributes when creating or updating models because of missing attributes in the $fillable array
 - Long-running command & request monitoring
 
 
@@ -23,14 +21,15 @@ You can install the package via composer:
 composer require kainiklas/laravel-strict-mode
 ```
 
-Optionally, you can publish the config file with:
+Optionally, you can publish the config file. 
 
 ```bash
 php artisan vendor:publish --tag="laravel-strict-mode-config"
 ```
 
+Alternatively, you can use environment variables to influence the behaviour.
+
 This is the contents of the published config file. 
-The configuration can be adapted using environment variables.
 
 ```php
 return [
@@ -115,9 +114,6 @@ return [
 ];
 ```
 
-## Usage
-
-
 
 ## Testing
 
@@ -136,6 +132,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Security Vulnerabilities
 
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+
+## Acknowledgements
+
+This package is based on the the article:
+- [Laravel's safety mechanisms](https://planetscale.com/blog/laravels-safety-mechanisms#model-strictness) by [Aaron Francis](https://github.com/aarondfrancis)
 
 ## Credits
 

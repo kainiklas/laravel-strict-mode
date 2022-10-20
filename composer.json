@@ -61,10 +61,7 @@
         "laravel": {
             "providers": [
                 "Kainiklas\\LaravelStrictMode\\LaravelStrictModeServiceProvider"
-            ],
-            "aliases": {
-                "LaravelStrictMode": "Kainiklas\\LaravelStrictMode\\Facades\\LaravelStrictMode"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

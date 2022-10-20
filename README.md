@@ -1,19 +1,19 @@
-# Laravel package which configures safety methods
+# Laravel package which enables and configures common safety methods
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/kainiklas/laravel-strict-mode.svg?style=flat-square)](https://packagist.org/packages/kainiklas/laravel-strict-mode)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/kainiklas/laravel-strict-mode/run-tests?label=tests)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/kainiklas/laravel-strict-mode/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/kainiklas/laravel-strict-mode.svg?style=flat-square)](https://packagist.org/packages/kainiklas/laravel-strict-mode)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Enables the following safety mechanisms in your Laravel project:
 
-## Support us
+- Prevent Lazy Loading (N+1 prevention)
+- Partially hydrated model protection
+- Attribute typos and renamed columns
+- Mass assignment protection
+- Model strictness
+- Long-running command & request monitoring
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-strict-mode.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-strict-mode)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -23,38 +23,101 @@ You can install the package via composer:
 composer require kainiklas/laravel-strict-mode
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-strict-mode-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
+Optionally, you can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="laravel-strict-mode-config"
 ```
 
-This is the contents of the published config file:
+This is the contents of the published config file. 
+The configuration can be adapted using environment variables.
 
 ```php
 return [
+
+    /**
+     * Throw exception if model is lazy loaded.
+     * Exception is only thrown if log_lazy_loading is set to false.
+     */
+    'prevent_lazy_loading' => env(
+        'PREVENT_LAZY_LOADING',
+        true,
+    ),
+
+    /**
+     * Lazy Loading violation is logged. No exception is thrown.
+     * Only works, if prevent_lazy_loading is set to true.
+     */
+    'log_lazy_loading' => env(
+        'LOG_LAZY_LOADING',
+        env('APP_ENV') == 'production'
+    ),
+
+    /**
+     * Prevent non-fillable attributes from being silently discarded.
+     * Instead, throw an Illuminate\Database\Eloquent\MassAssignmentException.
+     *
+     * correctness of app -> should be enabled in all environments
+     */
+    'prevent_silently_discarding_attributes' => env(
+        'PREVENT_SILENTLY_DISCARDING_ATTRIBUTES',
+        true
+    ),
+
+    /**
+     * If activated an Illuminate\Database\Eloquent\MissingAttributeException
+     * is thrown whenever an attribute is accessed which is not present in the model,
+     * instead of falling back to NULL.
+     *
+     * correctness of app -> should be enabled in all environments
+     */
+    'prevent_accessing_missing_attributes' => env(
+        'PREVENT_ACCESSING_MISSING_ATTRIBUTES',
+        true
+    ),
+
+    /**
+     * Logs a warning if a command runs longer than the specified threshold.
+     * Threshold is speficied in milliseconds [ms].
+     */
+    'long_running_command_threshold' => env(
+        'LONG_RUNNING_COMMAND_THRESHOLD',
+        5000 // [ms]
+    ),
+
+    /**
+     * Logs a warning if a HTTP request runs longer than the specified threshold.
+     * Threshold is speficied in milliseconds [ms].
+     */
+    'long_running_request_threshold' => env(
+        'LONG_RUNNING_REQUEST_THRESHOLD',
+        5000 // [ms]
+    ),
+
+    /**
+     * Logs a warning if a DB connection runs longer than the specified threshold.
+     * Threshold is speficied in milliseconds [ms].
+     */
+    'long_running_total_db_query_threshold' => env(
+        'LONG_RUNNING_TOTAL_DB_QUERY_THRESHOLD',
+        2000 // [ms]
+    ),
+
+    /**
+     * Logs a warning if a single DB Query runs longer than the specified threshold.
+     * Threshold is speficied in milliseconds [ms].
+     */
+    'long_running_single_db_query_threshold' => env(
+        'LONG_RUNNING_SINGLE_DB_QUERY_THRESHOLD',
+        1000 // [ms]
+    ),
+
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-strict-mode-views"
 ```
 
 ## Usage
 
-```php
-$laravelStrictMode = new Kainiklas\LaravelStrictMode();
-echo $laravelStrictMode->echoPhrase('Hello, Kainiklas!');
-```
+
 
 ## Testing
 

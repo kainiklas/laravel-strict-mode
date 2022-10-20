@@ -4,7 +4,7 @@
 return [
 
     /**
-     * Throw exception if model is lazy loaded.
+     * Throws Illuminate\Database\LazyLoadingViolationException if model is lazy loaded.
      * Exception is only thrown if log_lazy_loading is set to false.
      */
     'prevent_lazy_loading' => env(
@@ -23,7 +23,7 @@ return [
 
     /**
      * Prevent non-fillable attributes from being silently discarded.
-     * Instead, throw an Illuminate\Database\Eloquent\MassAssignmentException.
+     * Instead, throws Illuminate\Database\Eloquent\MassAssignmentException.
      *
      * correctness of app -> should be enabled in all environments
      */

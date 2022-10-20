@@ -1,19 +1,37 @@
-# Laravel package which enables and configures common safety methods
+# Laravel Package to Enable Eloquent "Strict Mode" and Further Safety Methods
+
+![Laravel Strict Mode](art/laravel-strict-mode.png)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/kainiklas/laravel-strict-mode.svg?style=flat-square)](https://packagist.org/packages/kainiklas/laravel-strict-mode)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/kainiklas/laravel-strict-mode/run-tests?label=tests)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/kainiklas/laravel-strict-mode/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/kainiklas/laravel-strict-mode.svg?style=flat-square)](https://packagist.org/packages/kainiklas/laravel-strict-mode)
 
-Enables the following safety mechanisms in your Laravel project:
+Enables the following configurable eloquent "strict mode" features:
 
 - Prevent Lazy Loading (N+1)
+    - Non-production: Throws an `Illuminate\Database\LazyLoadingViolationException` exception
+    - Production: Writes a warning into the logs
 - Prevent defaulting to NULL when using a model's attribute that hasn't been fetched from the DB or doesn't exist on the model
+    - Throws an `Illuminate\Database\Eloquent\MissingAttributeException` exception (all environments)
 - Prevent loosing attributes when creating or updating models because of missing attributes in the $fillable array
-- Long-running command & request monitoring
+    - Throws an `Illuminate\Database\Eloquent\MassAssignmentException` exception (all environments)
+
+Enables the following configurable safety methods:
+
+- Long-running command monitoring
+    - Writes a warning into the logs including the command name, user and duration which took longer than the specified threshold (default: 5000ms)
+- Long-running requests monitoring
+    - Writes a warning into the logs including the request url, user and duration which took longer than the specified threshold (default: 5000ms)
+- Long-running single DB query monitoring
+    - Writes an info into the logs including the SQL query and duration which took longer than the specified threshold (default: 1000ms)
+- Long-running DB connection monitoring
+    - Writes an info into the logs including the DB connection name which took longer than the specified threshold (default: 2000ms)
 
 
 ## Installation
+
+**Laravel Version ^9.35 required.**
 
 You can install the package via composer:
 

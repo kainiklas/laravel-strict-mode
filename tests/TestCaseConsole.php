@@ -5,7 +5,7 @@ namespace Kainiklas\LaravelStrictMode\Tests;
 use Kainiklas\LaravelStrictMode\LaravelStrictModeServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends Orchestra
+class TestCaseConsole extends Orchestra
 {
     protected function setUp(): void
     {
@@ -19,7 +19,8 @@ class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('app.debug', 'true');
     }
 }

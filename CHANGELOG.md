@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-strict-mode` will be documented in this file.
 
+## v1.0.1 - 2022-10-26
+
+- Update dependency versions
+
 ## v1.0.0 - 2022-10-26
 
 ### Added

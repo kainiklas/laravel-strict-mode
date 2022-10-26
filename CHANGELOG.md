@@ -10,7 +10,7 @@ All notable changes to `laravel-strict-mode` will be documented in this file.
 - Option to Log MissingAttributeException and MassAssignmentException instead of throwing an Exception
 - Test cases for all features
 
-### Breaking Changed
+### Breaking Changes
 
 - Naming of config and environment variables: Please check your config and environment variables
 

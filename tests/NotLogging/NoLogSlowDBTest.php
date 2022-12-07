@@ -5,10 +5,7 @@ use Illuminate\Support\Facades\Log;
 
 it('doesntLogsAnInfoOnLongRunningDBQueries', function () {
     Log::shouldReceive('info')
-        ->never()
-        ->withArgs(function ($message) {
-            return strpos($message, 'Database queries exceeded the defined threshold.') !== false;
-        });
+        ->never();
 
     /** @var Illuminate\Database\Connection */
     $connection = DB::connection();
@@ -19,10 +16,7 @@ it('doesntLogsAnInfoOnLongRunningDBQueries', function () {
 
 it('doesntLogsAnInfoOnLongRunningSingleDBQuery', function () {
     Log::shouldReceive('info')
-        ->never()
-        ->withArgs(function ($message) {
-            return strpos($message, 'An individual database query exceeded the defined threshold.') !== false;
-        });
+        ->never();
 
     /** @var Illuminate\Database\Connection */
     $connection = DB::connection();

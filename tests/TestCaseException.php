@@ -2,46 +2,14 @@
 
 namespace Kainiklas\LaravelStrictMode\Tests;
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use Kainiklas\LaravelStrictMode\LaravelStrictModeServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-
-class TestCaseException extends Orchestra
+class TestCaseException extends BaseTestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Schema::create('test_model1', function (Blueprint $table) {
-            $table->increments('id');
-        });
-
-        Schema::create('test_model2', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignId('model_1_id');
-        });
-    }
-
     protected function getPackageProviders($app)
     {
-        return [
-            LaravelStrictModeServiceProvider::class,
-        ];
-    }
+        putenv('LOG_LAZY_LOADING=false');
+        putenv('LOG_PREVENT_SILENTLY_DISCARDING_ATTRIBUTES=false');
+        putenv('LOG_PREVENT_ACCESSING_MISSING_ATTRIBUTES=false');
 
-    protected function getEnvironmentSetUp($app)
-    {
-        config()->set('app.debug', 'true');
-        config()->set('database.default', 'testbench');
-        config()->set('database.connections.testbench', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
-
-        config()->set('strict-mode.log_lazy_loading', false);
-        config()->set('strict-mode.log_prevent_silently_discarding_attributes', false);
-        config()->set('strict-mode.log_prevent_accessing_missing_attributes', false);
+        return parent::getPackageProviders($app);
     }
 }

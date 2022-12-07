@@ -5,10 +5,7 @@ use Kainiklas\LaravelStrictMode\Tests\Mocks\Model1;
 
 it('doesntLogsAWarningOnLazyLoading', function () {
     Log::shouldReceive('warning')
-        ->never()
-        ->withArgs(function ($message) {
-            return strpos($message, 'Attempted to lazy load') !== false;
-        });
+        ->never();
 
     try {
         Model1::create();
@@ -23,10 +20,7 @@ it('doesntLogsAWarningOnLazyLoading', function () {
 
 it('doesntLogsAWarningOnMissingAttribute', function () {
     Log::shouldReceive('warning')
-        ->never()
-        ->withArgs(function ($message) {
-            return strpos($message, 'Attempted to access') !== false;
-        });
+        ->never();
 
     try {
         Model1::create();
@@ -40,10 +34,7 @@ it('doesntLogsAWarningOnMissingAttribute', function () {
 
 it('doesntLogsAWarningOnMissingFillable', function () {
     Log::shouldReceive('warning')
-        ->never()
-        ->withArgs(function ($message) {
-            return strpos($message, 'Attempted to mass assign') !== false;
-        });
+        ->never();
 
     try {
         Model1::create();

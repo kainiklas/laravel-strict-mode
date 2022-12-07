@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 it('doesntLogsAWarningOnSlowRequest', function () {
     Log::shouldReceive('warning')
-        ->never()
-        ->withArgs(function ($message) {
-            return strpos($message, 'A request took longer than the defined threshold.') !== false;
-        });
+        ->never();
 
     Route::get('test-route', fn () => 'ok');
     $request = Request::create('http://localhost/test-route');

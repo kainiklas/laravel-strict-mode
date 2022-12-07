@@ -4,7 +4,6 @@ namespace Kainiklas\LaravelStrictMode\Tests;
 
 class TestCaseLogging extends BaseTestCase
 {
-
     protected function getPackageProviders($app)
     {
         putenv('LOG_LAZY_LOADING=true');
@@ -18,5 +17,4 @@ class TestCaseLogging extends BaseTestCase
 
         return parent::getPackageProviders($app);
     }
-
 }

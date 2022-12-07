@@ -10,7 +10,7 @@ class TestCaseNotLogging extends BaseTestCase
 
         // $this->refreshApplication();
     }
-   
+
     protected function getPackageProviders($app)
     {
         putenv('LOG_LAZY_LOADING=false');
@@ -24,5 +24,4 @@ class TestCaseNotLogging extends BaseTestCase
 
         return parent::getPackageProviders($app);
     }
-
 }

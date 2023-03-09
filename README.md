@@ -3,8 +3,7 @@
 ![Laravel Strict Mode](art/laravel-strict-mode.png)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/kainiklas/laravel-strict-mode.svg?style=flat-square)](https://packagist.org/packages/kainiklas/laravel-strict-mode)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/kainiklas/laravel-strict-mode/run-tests?label=tests)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/kainiklas/laravel-strict-mode/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/kainiklas/laravel-strict-mode/run-tests.yml?branch=main)](https://github.com/kainiklas/laravel-strict-mode/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/kainiklas/laravel-strict-mode.svg?style=flat-square)](https://packagist.org/packages/kainiklas/laravel-strict-mode)
 
 Enables the following configurable eloquent "strict mode" features:

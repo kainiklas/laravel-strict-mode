@@ -29,11 +29,12 @@ Enables the following configurable safety methods:
     - Writes an info into the logs including the SQL query and duration which took longer than the specified threshold (default: 1000ms)
 - Long-running DB connection monitoring
     - Writes an info into the logs including the DB connection name which took longer than the specified threshold (default: 2000ms)
-
+- Memory Heap Size monitoring
+    - Writes a warning into the logs including when the memory heap size exceeds the specified threshold (default: 50MB)
 
 ## Installation
 
-**Laravel Version ^9.36 required.**
+**Laravel Version ^10.0 required.**
 
 You can install the package via composer:
 
@@ -176,6 +177,22 @@ return [
     'log_long_running_single_db_query_threshold' => env(
         'LOG_LONG_RUNNING_SINGLE_DB_QUERY_THRESHOLD',
         1000 // [ms]
+    ),
+
+    /**
+     * Logs a warning if a request cycle consumed more memory than the specified threshold.
+     */
+    'log_memory_heap_size' => env(
+        'LOG_MEMORY_HEAP_SIZE',
+        true
+    ),
+
+    /**
+     * Threshold for memory heap size in Megabytes [MB].
+     */
+    'log_memory_heap_size_threshold' => env(
+        'LOG_MEMORY_HEAP_SIZE_THRESHOLD',
+        50 // [MB]
     ),
 
 ];

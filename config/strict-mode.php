@@ -127,4 +127,20 @@ return [
         1000 // [ms]
     ),
 
+    /**
+     * Logs a warning if a request cycle consumed more memory than the specified threshold.
+     */
+    'log_memory_heap_size' => env(
+        'LOG_MEMORY_HEAP_SIZE',
+        true
+    ),
+
+    /**
+     * Threshold for memory heap size in Megabytes [MB].
+     */
+    'log_memory_heap_size_threshold' => env(
+        'LOG_MEMORY_HEAP_SIZE_THRESHOLD',
+        50 // [MB]
+    ),
+
 ];

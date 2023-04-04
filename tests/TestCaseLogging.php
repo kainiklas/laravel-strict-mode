@@ -15,6 +15,8 @@ class TestCaseLogging extends BaseTestCase
         putenv('LOG_LONG_RUNNING_TOTAL_DB_QUERY=true');
         putenv('LOG_LONG_RUNNING_SINGLE_DB_QUERY=true');
 
+        putenv('LOG_MEMORY_HEAP_SIZE=true');
+
         return parent::getPackageProviders($app);
     }
 }

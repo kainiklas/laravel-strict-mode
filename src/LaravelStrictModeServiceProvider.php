@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Kainiklas\LaravelStrictMode\Http\Middleware\MemoryHeap;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Symfony\Component\Console\Input\InputInterface;
@@ -39,6 +40,9 @@ class LaravelStrictModeServiceProvider extends PackageServiceProvider
         $this->handleLongRunningDBQueries();
         $this->handleSlowCommands();
         $this->handleSlowRequests();
+
+        $kernel = app(HttpKernel::class);
+        $kernel->pushMiddleware(MemoryHeap::class);
     }
 
     /**

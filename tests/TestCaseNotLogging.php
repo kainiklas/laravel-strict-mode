@@ -22,6 +22,8 @@ class TestCaseNotLogging extends BaseTestCase
         putenv('LOG_LONG_RUNNING_TOTAL_DB_QUERY=false');
         putenv('LOG_LONG_RUNNING_SINGLE_DB_QUERY=false');
 
+        putenv('LOG_MEMORY_HEAP_SIZE=false');
+
         return parent::getPackageProviders($app);
     }
 }

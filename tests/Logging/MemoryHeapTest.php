@@ -5,11 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-
 use function Pest\Faker\fake;
 
 it('logsAWarningWhenMemoryHeapIsTooHigh', function () {
-
     Log::shouldReceive('warning')
         ->once()
         ->withArgs(function ($message) {
@@ -17,7 +15,7 @@ it('logsAWarningWhenMemoryHeapIsTooHigh', function () {
         });
 
     $dummy = [];
-    for ($i=0; $i < 50000; $i++) {
+    for ($i = 0; $i < 50000; $i++) {
         array_push($dummy, fake()->sentence());
     }
 

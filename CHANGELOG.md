@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-strict-mode` will be documented in this file.
 
+## v2.0.0 - 2023-04-06
+
+### Breaking Change:
+
+- Minimum supported Version is Laravel ^10.0
+
+### Added
+
+- Monitor Memory Heap Size
+
 ## v1.0.2 - 2022-10-26
 
 ### Fixes
